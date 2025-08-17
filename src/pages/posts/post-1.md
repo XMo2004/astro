@@ -26,3 +26,5 @@ tags: ["astro", "blogging", "learning in public"]
  ## 下一步计划
 
  我将完成 Astro 教程，然后继续编写更多内容。关注我以获取更多信息。
+
+ $\frac{1}{2}+\frac{1}{2}=1$
