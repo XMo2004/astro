@@ -1,4 +1,4 @@
-# Astro Starter Kit: Minimal
+# 基于 Astro 搭建的个人网站
 
 ```sh
 npm create astro@latest -- --template minimal
