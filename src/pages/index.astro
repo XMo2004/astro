@@ -1,6 +1,19 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 const pageTitle = "首页";
 ---
-<BaseLayout pageTitle={pageTitle}>
-</BaseLayout>
+
+<html lang = "zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <Header />
+        <Footer />
+    </body>
+</html>
