@@ -1,8 +1,64 @@
 ---
-import Navigation from './Navigation.astro';
 ---
+
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: #F7F9FE;
+        text-decoration: none;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 10%;
+        height: 60px;
+    }
+    nav{
+        display: flex;
+        justify-content:center;
+        width: 100%;
+        left: 0;
+        margin: 0;
+        transform: translateZ(0);
+        align-items: center;
+    }
+    li,a,button{
+        display: flex;
+        font-size: 16px;
+        font-weight: 500;
+        color: black;
+    }
+    .logo{
+        cursor: pointer;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .nav-links{
+        list-style: none;
+    }
+    .nav-item{
+        display: inline-block;
+        padding: 0px 20px;
+    }
+    .nav-item a{
+        transition: all 0.3s ease 0s;
+    }
+    .nav-item a:hover{
+        color: #0088a9;
+    }
+</style>
+
 <header>
- <nav>
-   <Navigation />
- </nav>
+    <a href="/" class="logo">XMo</a>
+    <nav>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/blog">博客</a></li>
+            <li class="nav-item"><a href="/note">笔记</a></li>
+            <li class="nav-item"><a href="/about">关于</a></li>
+        </ul>
+    </nav>
 </header>
