@@ -11,7 +11,7 @@ window.addEventListener("load", ()=>{
         scrollTrigger: {
           trigger: ".wrapper",
           start: "top top",
-          end: "+=200%", // 延长滚动距离，让动画更加缓慢和流畅
+          end: "+=100%", // 延长滚动距离，让动画更加缓慢和流畅
           pin: true,
           scrub: 1.5, // 增加scrub值，让滚动响应更柔和
           anticipatePin: 1, // 改善固定时的性能
@@ -33,7 +33,7 @@ window.addEventListener("load", ()=>{
         scale: 1.4,
         boxShadow: `10000px 0 0 0 rgba(0,0,0,0.55) inset`, // 稍微增强阴影
         transformOrigin: "center center",
-        duration: 0.4, // 40% 的动画时间
+        duration: 0.3, // 40% 的动画时间
         ease: "power1.inOut", // 平滑的进出缓动
       }, 0.1) // 稍微延迟开始，创建层次感
       
@@ -46,7 +46,7 @@ window.addEventListener("load", ()=>{
       
       // 第四阶段：高度调整和intro文字效果
       .to([".section.hero-section", ".intro"], {
-        height: 500,
+        height: 800,
         duration: 0.3, // 30% 的动画时间
         ease: "power2.inOut"
       }, 0.6)
