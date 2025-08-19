@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-gsap.ticker.fps(120);
+gsap.ticker.fps(60);
 
 window.addEventListener("load", ()=>{
     // 创建主要的滚动触发时间轴
