@@ -25,6 +25,10 @@ body {
     font-family: "Roboto", system-ui;
     /* 确保body也隐藏滚动条 */
     overflow-x: hidden;
+    /* 移动端优化 */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 html {
@@ -106,11 +110,89 @@ html {
 }
 
 
-@media (max-width: 575.98px) {
+/* 平板设备优化 */
+@media (max-width: 1024px) {
     .intro h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     .intro p {
+        font-size: 6rem;
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .intro {
+        padding: 1rem;
+    }
+    
+    .intro h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .intro p {
         font-size: 4rem;
+        line-height: 1.1;
+        text-align: center;
+    }
+    
+    .content .section.hero-section {
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+    }
+    
+    .image-container {
+        height: 100vh;
+    }
+    
+    .image-container img {
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* 小屏手机优化 */
+@media (max-width: 480px) {
+    .intro {
+        padding: 0.5rem;
+    }
+    
+    .intro h1 {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .intro p {
+        font-size: 2.5rem;
+        line-height: 1;
+    }
+}
+
+/* 超小屏设备优化 */
+@media (max-width: 320px) {
+    .intro h1 {
+        font-size: 1rem;
+    }
+    
+    .intro p {
+        font-size: 2rem;
+    }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .intro {
+        height: 100vh;
+        justify-content: center;
+    }
+    
+    .intro h1 {
+        font-size: 1.3rem;
+    }
+    
+    .intro p {
+        font-size: 3rem;
     }
 }

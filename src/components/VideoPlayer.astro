@@ -22,7 +22,10 @@ const playerId = `video-player-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <!-- 组件模板 -->
-<div class:list={['video-container', className]}>
+<div 
+  class:list={['video-container', className]}
+  style={`--video-width: ${width}px; --video-height: ${height}px;`}
+>
   <video
     id={playerId}
     class="video-js vjs-default-skin vjs-big-play-centered"
@@ -104,7 +107,15 @@ const playerId = `video-player-${Math.random().toString(36).substr(2, 9)}`;
 
   .video-js {
     width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 12px;
+  }
+  
+  /* 当指定了具体尺寸时，使用指定的尺寸 */
+  .video-container:not(.mobile-optimized-video) .video-js {
+    width: var(--video-width, 100%);
+    height: var(--video-height, auto);
   }
 
   .vjs-poster {
@@ -134,14 +145,77 @@ const playerId = `video-player-${Math.random().toString(36).substr(2, 9)}`;
   /* 响应式设计 */
   @media (max-width: 768px) {
     .video-container {
-      margin: 1rem 0;
+      margin: 0.5rem;
       border-radius: 8px;
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+    }
+    
+    .video-container .video-js {
+      width: 100% !important;
+      height: auto !important;
     }
     
     .video-js .vjs-big-play-button {
       width: 60px;
       height: 60px;
       line-height: 60px;
+      font-size: 1.5rem;
+    }
+    
+    /* 移动端控制栏优化 */
+    .video-js .vjs-control-bar {
+      height: 40px;
+      font-size: 14px;
+    }
+    
+    .video-js .vjs-control {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+  
+  /* 超小屏幕优化 */
+   @media (max-width: 480px) {
+     .video-container {
+       margin: 0.25rem;
+       border-radius: 6px;
+       width: calc(100vw - 0.5rem);
+       max-width: calc(100vw - 0.5rem);
+     }
+     
+     .video-container .video-js {
+       width: 100% !important;
+       height: auto !important;
+     }
+    
+    .video-js .vjs-big-play-button {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 1.2rem;
+    }
+    
+    .video-js .vjs-control-bar {
+      height: 35px;
+      font-size: 12px;
+    }
+    
+    .video-js .vjs-control {
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+  
+  /* 触摸设备优化 */
+  @media (hover: none) and (pointer: coarse) {
+    .video-js .vjs-control {
+      min-height: 44px; /* iOS推荐的最小触摸目标 */
+    }
+    
+    .video-js .vjs-big-play-button {
+      min-width: 44px;
+      min-height: 44px;
     }
   }
 </style>

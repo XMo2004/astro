@@ -6,18 +6,64 @@ import VideoPlayer from "../components/VideoPlayer.astro"
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>Mr.Jiang & Mrs.Ma</title>
+        <style>
+            /* 移动端优化样式 */
+            body {
+                padding: 0;
+                margin: 0;
+                overflow-x: hidden;
+            }
+            
+            .mobile-optimized-video {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin: 1rem 0;
+            }
+            
+            /* 移动端视频容器优化 */
+            @media (max-width: 768px) {
+                .mobile-optimized-video {
+                    margin: 0.5rem;
+                    border-radius: 8px;
+                }
+                
+                body {
+                    font-size: 14px;
+                }
+                
+                /* 确保视频在移动端全宽显示 */
+                .video-container {
+                    width: 100vw;
+                    max-width: 100vw;
+                    margin: 0;
+                    border-radius: 0;
+                }
+            }
+            
+            /* 超小屏幕优化 */
+            @media (max-width: 480px) {
+                .mobile-optimized-video {
+                    margin: 0.25rem;
+                }
+                
+                body {
+                    font-size: 12px;
+                }
+            }
+        </style>
     </head>
     <body>
         <LoveHeader />
         <VideoPlayer
         src="https://xmo-1320977276.cos.ap-beijing.myqcloud.com/%E5%A9%9A%E7%85%A7%E5%B1%95%E7%A4%BA.mov" 
-        poster="https://your-bucket.cos.ap-shanghai.myqcloud.com/poster.jpg"
-        width={1280}
-        height={720}
-        className="custom-video-style"
+        poster="https://i.imgs.ovh/2025/08/15/K0ZpF.jpeg"
+        width={480}
+        height={270}
+        className="mobile-optimized-video"
       />
     </body>
 </html>
