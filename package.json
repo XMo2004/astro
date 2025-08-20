@@ -9,8 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@types/video.js": "^7.3.58",
     "astro": "^5.13.2",
-    "gsap": "^3.13.0"
+    "gsap": "^3.13.0",
+    "video.js": "^8.23.4"
   },
   "devDependencies": {
     "@types/gsap": "^1.20.2"
