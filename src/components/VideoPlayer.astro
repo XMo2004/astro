@@ -1,0 +1,147 @@
+---
+// 定义组件 Props 接口
+export interface Props {
+  src: string;
+  poster?: string;
+  width?: number;
+  height?: number;
+  className?: string;
+}
+
+// 接收 props
+const {
+  src,
+  poster,
+  width = 960,
+  height = 540,
+  className = ''
+} = Astro.props;
+
+// 生成唯一 ID
+const playerId = `video-player-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<!-- 组件模板 -->
+<div class:list={['video-container', className]}>
+  <video
+    id={playerId}
+    class="video-js vjs-default-skin vjs-big-play-centered"
+    controls
+    preload="auto"
+    width={width}
+    height={height}
+    poster={poster}
+    data-setup="{}"
+  >
+    <source src={src} type="video/mp4" />
+    
+    <p class="vjs-no-js">
+      您的浏览器不支持HTML5视频播放器，请
+      <a href={src} download target="_blank">下载视频</a>观看。
+    </p>
+  </video>
+</div>
+
+<!-- 客户端脚本 -->
+<script>
+  // 导入 Video.js
+  import videojs from 'video.js';
+  import 'video.js/dist/video-js.css';
+
+  // 等待DOM加载完成
+  document.addEventListener('DOMContentLoaded', () => {
+    // 获取所有video元素并初始化
+    const videoElements = document.querySelectorAll('.video-js');
+    
+    videoElements.forEach((videoElement) => {
+      if (!videoElement.id) return;
+      
+      // 初始化播放器
+      const player = videojs(videoElement, {
+    playbackRates: [0.5, 1, 1.5, 2],
+    controlBar: {
+      children: [
+        'playToggle',
+        'volumePanel',
+        'currentTimeDisplay',
+        'timeDivider',
+        'durationDisplay',
+        'progressControl',
+        'remainingTimeDisplay',
+        'playbackRateMenuButton',
+        'fullscreenToggle'
+      ]
+    },
+    responsive: true,
+    fluid: true
+      });
+
+      // 错误处理
+      player.on('error', () => {
+        console.error('视频加载失败，请检查链接');
+      });
+
+      // 清理函数
+      window.addEventListener('beforeunload', () => {
+        if (player) {
+          player.dispose();
+        }
+      });
+    });
+  });
+</script>
+
+<!-- 样式 -->
+<style>
+  .video-container {
+    max-width: 100%;
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #000;
+  }
+
+  .video-js {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .vjs-poster {
+    border-radius: 12px;
+  }
+
+  .video-js .vjs-control-bar {
+    background: rgba(20, 20, 20, 0.9) !important;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  .video-js .vjs-play-progress,
+  .video-js .vjs-volume-level {
+    background: #ff4757 !important;
+  }
+
+  .video-js .vjs-big-play-button {
+    background: rgba(255, 71, 87, 0.8) !important;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .video-container {
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+    
+    .video-js .vjs-big-play-button {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+</style>
