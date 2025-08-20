@@ -42,21 +42,6 @@ window.addEventListener("load", ()=>{
         duration: 0.2, // 20% 的动画时间
         ease: "power2.in" // 加速淡出
       }, 0.5) // 在中段开始淡出
-      
-      // 第四阶段：高度调整和intro文字效果
-      .to([".section.hero-section", ".intro"], {
-        height: 800,
-        duration: 0.3, // 30% 的动画时间
-        ease: "power2.inOut"
-      }, 0.6)
-      
-      // 最后阶段：intro文字的额外效果
-      .to(".intro", {
-        y: -50, // 轻微上移
-        opacity: 0.9,
-        duration: 0.2,
-        ease: "power1.out"
-      }, 0.8);
 
     // 添加一些额外的性能优化
     ScrollTrigger.config({
